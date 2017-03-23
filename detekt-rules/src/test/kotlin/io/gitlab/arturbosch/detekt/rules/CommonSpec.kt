@@ -1,7 +1,6 @@
 package io.gitlab.arturbosch.detekt.rules
 
 import io.gitlab.arturbosch.detekt.api.Rule
-import io.gitlab.arturbosch.detekt.rules.style.WildcardImport
 import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.spek.api.SubjectSpek
 import org.jetbrains.spek.api.dsl.describe
@@ -17,7 +16,7 @@ class CommonSpec : SubjectSpek<Rule>({
 	describe("running specified rule") {
 		it("should detect one finding") {
 			subject.visit(root)
-			assertThat(subject.findings).isEqualTo(1)
+			assertThat(subject.findings).hasSize(1)
 		}
 	}
 })
