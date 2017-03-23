@@ -1,9 +1,8 @@
 package io.gitlab.arturbosch.detekt.rules
 
-import com.natpryce.hamkrest.assertion.assertThat
-import com.natpryce.hamkrest.equalTo
-import com.natpryce.hamkrest.hasSize
+import io.gitlab.arturbosch.detekt.rules.style.NamingConventionViolation
 import io.gitlab.arturbosch.detekt.test.lint
+import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.spek.api.SubjectSpek
 import org.jetbrains.spek.api.dsl.it
 import org.junit.jupiter.api.Test
@@ -17,7 +16,7 @@ class NamingConventionViolationSpec : SubjectSpek<NamingConventionViolation>({
 	it("should find all wrong namings") {
 		val root = load(Case.NamingConventions)
 		subject.visit(root)
-		assertThat(subject.findings, hasSize(equalTo(9)))
+		assertThat(subject.findings).hasSize(9)
 	}
 
 })
@@ -33,7 +32,7 @@ class NamingConventionTest {
             const val MyNAME = "Artur"
             const val serialVersionUID = 42L
             """
-		), hasSize(equalTo(1)))
+		)).hasSize(1)
 	}
 
 	@Test
@@ -44,6 +43,6 @@ class NamingConventionTest {
 				val MY_NAME = "Artur"
 			}
             """
-		), hasSize(equalTo(0)))
+		)).hasSize(0)
 	}
 }
